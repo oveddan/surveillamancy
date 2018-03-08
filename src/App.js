@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import logo from './logo.svg';
+import spiral from './spiral.svg';
 import './App.css';
 
 // predict the contents of an image by passing in a url
@@ -52,7 +52,7 @@ class App extends Component {
       visionType
     })
 
-    const serverBaseUrl = process.env.NODE_ENV === 'production' ? 
+    const serverBaseUrl = process.env.NODE_ENV === 'production' ?
       'https://surveillamancy.herokuapp.com/' : 'http://localhost:5000'
 
     axios.get(`${serverBaseUrl}?cameraType=${visionType}`)
@@ -97,10 +97,15 @@ class App extends Component {
           <h2 className='display-4'>
             {this.isOnLandingPage() && (<div>Which camera <br/><span>tickles your fancy?</span></div>)}
             {this.isLoading() && (
-              <div className='loading'>
-                {`Finding you ${prefix(this.state.visionType[0]).toLowerCase()} `}
-                <span>{`${this.state.visionType} `}</span>
-                &nbsp;camera somewhere in the world
+              <div>
+                <div className='loading'>
+                  {`Finding you ${prefix(this.state.visionType[0]).toLowerCase()} `}
+                  <span>{`${this.state.visionType} `}</span>
+                  &nbsp;camera somewhere in the world
+                </div>
+                <div style={{textAlign: 'center'}}>
+                  <img src={spiral} width='380px' style={{margin:'25px auto'}}/>
+                </div>
               </div>
             )}
             {this.isViewingVisions() && (
@@ -122,9 +127,6 @@ class App extends Component {
               ))}
             </p>
           )}
-          {!this.state.loading && this.state.visions && (
-            <p><a href='#' onClick={this.seeANewVision} >Voyeur another camera</a></p>
-          )}
           {this.state.imageUri && (
             <div className='row'>
               <div className='col-md-5'>
@@ -134,6 +136,9 @@ class App extends Component {
                     {`${interpretation}`}
                   </p>
                 ))}
+                <p className='lead'>
+                  <button className='btn btn-light' onClick={this.seeANewVision} >See another camera</button>
+                </p>
               </div>
               <div className='col-md-7'>
                 <div style={toImageUriStyle(this.state)} />

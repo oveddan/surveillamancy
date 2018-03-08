@@ -38,7 +38,7 @@ h2 span {
   font-weight: 600;
 }
 
-.lead button {
+.lead button, p.lead {
   margin: 10px;
 }
 

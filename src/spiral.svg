@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" version="1.1" 
+style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;" viewBox="0 0 400 400" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd"><defs><style type="text/css">
+   
+    .fil0 {fill:white;fill-rule:nonzero}
+   
+  </style></defs><g><path class="fil0" d="M179 147c4,-2 6,-5 6,-10 0,-9 -7,-17 -17,-17 -13,0 -24,10 -24,23 0,32 40,40 61,19 18,-18 14,-46 -4,-63 -23,-22 -61,-18 -82,4 -29,28 -23,73 5,99 35,33 92,28 126,-6 42,-42 35,-110 -7,-149 -51,-48 -132,-43 -183,2 -26,23 -43,55 -47,91l-13 -1c4,-39 23,-74 52,-99 55,-50 144,-55 200,-3 47,45 55,121 7,168 -38,39 -104,45 -144,6 -33,-31 -39,-84 -6,-117 27,-27 73,-31 101,-4 23,21 27,58 4,81 -30,29 -83,15 -83,-28 0,-20 17,-36 37,-36 17,0 30,14 30,30 0,14 -12,24 -25,24 -12,0 -20,-9 -20,-20 0,-10 8,-16 17,-16 12,0 16,16 9,22z"/>
+  
+  </g>
+ <animateTransform attributeName="transform"
+                        attributeType="XML"
+                        type="rotate"
+                        from="0 155 140"
+                        to="360 155 140"
+                        dur="5s"
+                        repeatCount="indefinite"/> 
+ 
+  </svg>
