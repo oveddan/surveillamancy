@@ -40,7 +40,6 @@ const cameraTypes = [
   'beach'
 ]
 
-const serverBaseUrl = process.env.SERVER_BASE_URL || 'http://localhost:5000'
 
 class App extends Component {
   state = {
@@ -52,6 +51,10 @@ class App extends Component {
       loading: true,
       visionType
     })
+
+    const serverBaseUrl = process.env.NODE_ENV === 'production' ? 
+      'https://surveillamancy.herokuapp.com/' : 'http://localhost:5000'
+
     axios.get(`${serverBaseUrl}?cameraType=${visionType}`)
       .then(({data: { imageUri, width, height, visions, location }}) => {
         this.setState({
