@@ -112,7 +112,7 @@ class App extends Component {
               <div>
                 {
                 `You are connected to ${prefix(this.state.visionType[0]).toLowerCase()} ` +
-                    `${this.state.visionType} camera in`}
+                    `${this.state.visionType} camera `}
                     <span>{`${this.state.location}, `}</span>
                     and you see:<br/>
               </div>
