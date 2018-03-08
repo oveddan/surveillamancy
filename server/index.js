@@ -4,7 +4,7 @@ var cors = require('cors');
 var app = express()
 
 // use it before all route definitions
-app.use(cors({origin: '*'}));
+app.use(cors())
 
 const insecamScraper = require('./insecam_scraper')
 const classify = require('./classify')
@@ -27,7 +27,7 @@ app.get('/', async function (req, res) {
     const visions = classificationNames.map(name => ({
       name,
       interpretation: interpretVision(name)
-    })).filter(({ interpretation }) => interpretation !== null) 
+    })).filter(({ interpretation }) => interpretation !== null)
     .slice(0, 3)
 
     res.json({
