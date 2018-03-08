@@ -40,6 +40,8 @@ const cameraTypes = [
   'beach'
 ]
 
+const serverBaseUrl = process.env.SERVER_BASE_URL || 'http://localhost:5000'
+
 class App extends Component {
   state = {
     imageUri: null
@@ -50,7 +52,7 @@ class App extends Component {
       loading: true,
       visionType
     })
-    axios.get(`http://localhost:5000?cameraType=${visionType}`)
+    axios.get(`${serverBaseUrl}?cameraType=${visionType}`)
       .then(({data: { imageUri, width, height, visions, location }}) => {
         this.setState({
           imageUri,
