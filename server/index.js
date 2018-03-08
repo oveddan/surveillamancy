@@ -29,7 +29,6 @@ app.get('/', async function (req, res) {
       interpretation: interpretVision(name)
     })).filter(({ interpretation }) => interpretation !== null) 
 
-
     res.json({
       imageUri,
       width,
