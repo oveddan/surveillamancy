@@ -17,6 +17,7 @@ const changeToSoundLikeVision = dreamMeaning => (
     .replace('dreamer', 'voyeur')
     .replace('dreaming', 'voyeuring')
     .replace('dream of', 'see')
+    .replace('in a dream', '')
 )
 
 const getMeaningForDreamName = (visionName) => {

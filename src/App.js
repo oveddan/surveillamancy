@@ -12,6 +12,10 @@ const toImageUriStyle = ({
   height
 })
 
+const vowels = ['a', 'e', 'i', 'o', 'u', 'y']
+
+const prefix = (firstLetter) => vowels.includes(firstLetter) ? 'An' : 'A'
+
 const cameraTypes = [
   'city',
   'kitchen',
@@ -69,44 +73,69 @@ class App extends Component {
     this.setState({ visions: null, imageUri: null, visionType: null })
   }
 
+  isOnLandingPage() {
+    return !this.state.loading && !this.state.visions
+  }
+
+  isLoading() {
+    return this.state.loading
+  }
+
+  isViewingVisions() {
+    return !this.state.loading && this.state.visions
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Voyeurmancy</h1>
-          <h3>Interpret your surveillance of the world</h3>
-        </header>
-        {!this.state.visionType && (
-          <p className="App-intro">
-            Choose what type of camera to voyeur:
-            <ul>
+      <div className="jumbotron jumbotron-fluid">
+        <div className='container'>
+          <h2 className='display-4'>
+            {this.isOnLandingPage() && (<div>Which camera <br/><span>tickles your fancy?</span></div>)}
+            {this.isLoading() && (
+              <div className='loading'>
+                {`Finding you ${prefix(this.state.visionType[0]).toLowerCase()} `}
+                <span>{`${this.state.visionType} `}</span>
+                &nbsp;camera somewhere in the world
+              </div>
+            )}
+            {this.isViewingVisions() && (
+              <div>
+                {
+                `You are connected to ${prefix(this.state.visionType[0]).toLowerCase()} ` +
+                    `${this.state.visionType} camera in`}
+                    <span>{`${this.state.location}, `}</span>
+                    and you see:<br/>
+              </div>
+            )}
+          </h2>
+          {!this.state.visionType && (
+            <p className="lead">
               {cameraTypes.map(cameraType => (
-                <li>
-                <a href='#' onClick={(e) => this.handleLoadImage(e, cameraType)}>{cameraType}</a>
-                </li>
+                <button key={cameraType} type="button" className="btn btn-light" onClick={(e) => this.handleLoadImage(e, cameraType)}>
+                  {`${prefix(cameraType[0])} ${cameraType} camera`}
+                </button>
               ))}
-            </ul>
-          </p>
-        )}
-        {this.state.loading && (
-          <p>{`Voyuering a ${this.state.visionType} camera...`}</p>
-        )}
-        {this.state.visions && (
-          <ul>
-            {this.state.visions.map((vision , i) => (
-              <li key={i}>{`${vision.name} : ${vision.interpretation}`}</li>
-            ))}
-          </ul>
-        )}
-        {!this.state.loading && this.state.visions && (
-          <p><a href='#' onClick={this.seeANewVision} >Voyeur another camera</a></p>
-        )}
-        {this.state.imageUri && (
-          <div>
-            <h1>{`${this.state.visionType} camera ${this.state.location}`}</h1>
-            <div style={toImageUriStyle(this.state)} />
-          </div>
-        )}
+            </p>
+          )}
+          {!this.state.loading && this.state.visions && (
+            <p><a href='#' onClick={this.seeANewVision} >Voyeur another camera</a></p>
+          )}
+          {this.state.imageUri && (
+            <div className='row'>
+              <div className='col-md-5'>
+                {this.state.visions.map(({ interpretation, name }, i) => (
+                  <p className='lead' key={i}>
+                    <strong>{`${name}. `}</strong>
+                    {`${interpretation}`}
+                  </p>
+                ))}
+              </div>
+              <div className='col-md-7'>
+                <div style={toImageUriStyle(this.state)} />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

@@ -12,7 +12,7 @@ const interpretVision = require('./interpret_vision')
 
 
 const getTopXClassificationNames = classifications => (
-  classifications.map(({ name }) => name).filter(name => name !== 'no person' && name !== 'indoors').slice(0, 7)
+  classifications.map(({ name }) => name).filter(name => name !== 'no person' && name !== 'indoors').slice(0, 10)
 )
 
 // respond with "hello world" when a GET request is made to the homepage
@@ -21,8 +21,8 @@ app.get('/', async function (req, res) {
   try {
     const {imageUri, width, height, location} = await insecamScraper.getRandomSnapshot(cameraType)
     const classifications = await classify(imageUri)
-    console.log('classified')
     const classificationNames = getTopXClassificationNames(classifications)
+    console.log('classifications:', classificationNames)
 
     const visions = classificationNames.map(name => ({
       name,
@@ -43,4 +43,6 @@ app.get('/', async function (req, res) {
   }
 })
 
-app.listen(5000);
+const PORT = process.env.PORT || 5000
+
+app.listen(PORT);
