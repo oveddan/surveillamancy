@@ -3,7 +3,9 @@ const Datauri = require('datauri')
 const datauri = new Datauri();
 
 async function getRandomSnapshot(cameraType) {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch(
+    { args: ['--no-sandbox', '--disable-setuid-sandbox'] }
+  );
   const page = await browser.newPage();
   console.log('navigating to page');
   await page.goto(`https://www.insecam.org/en/bytag/${cameraType}`);
